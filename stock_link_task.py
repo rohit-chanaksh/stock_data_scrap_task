@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup , NavigableString
 
-import pandas as pd
+import requests as rq
 
 #selectox
 
@@ -45,4 +45,14 @@ if __name__ == '__main__' :
 
         stock_links = [ parent_URL + extension  for extension in link_list]
         print(stock_links)
+
+    
+for link in stock_links :
+    sl_resp = rq.get(link)
+    print(sl_resp.status_code)
+    
+
+
+
+
 
