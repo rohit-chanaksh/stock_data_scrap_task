@@ -47,9 +47,9 @@ if __name__ == '__main__' :
         print(stock_links)
 
     
-for link in stock_links :
-    sl_resp = rq.get(link)
-    print(sl_resp.status_code)
+# for link in stock_links :
+#     sl_resp = rq.get(link)
+#     print(sl_resp.status_code)
     
 
 
