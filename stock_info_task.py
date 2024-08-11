@@ -10,13 +10,22 @@ def remove_extra(itration):
 def TCS_info(TCS_page):
     print('Stock Name:-' ,TCS_page.find('h1', {'class': 'apply-overflow-tooltip title-HFnhSVZy'}).getText())
     print('Stock Price:-' ,TCS_page.find('span', {'class': 'last-JWoJqCpY js-symbol-last'}).find('span').getText())
-    
+    print('Market Capitalization :- ', TCS_page.find('div', {'data-container-name': 'key-stats-id'}).find('div', {'class': 'content-JhZ1X2FK'}).find('div', {'class': 'apply-overflow-tooltip value-GgmpMpKr'}).getText())
+    key_stat_list = TCS_page.find('div', {'data-container-name': 'key-stats-id'}).find_all('div' , {'class': 'block-GgmpMpKr container-lQwbiR8R'} )
+    # print(len(key_stat_list))
+    print('Dividend yield (indicated) :-' , key_stat_list[1].find('div', {'class': 'apply-overflow-tooltip value-GgmpMpKr'}).getText())
+    print('Price to earnings Ratio (TTM):-' , key_stat_list[2].find('div', {'class': 'apply-overflow-tooltip value-GgmpMpKr'}).getText())
+    print('Basic EPS (TTM):-' , key_stat_list[3].find('div', {'class': 'apply-overflow-tooltip value-GgmpMpKr'}).getText())
+    print('Net income (FY):-' , key_stat_list[4].find('div', {'class': 'apply-overflow-tooltip value-GgmpMpKr'}).getText())
+    print('Revenue (FY):-' , key_stat_list[5].find('div', {'class': 'apply-overflow-tooltip value-GgmpMpKr'}).getText())
+    print('Shares float:-' , key_stat_list[6].find('div', {'class': 'apply-overflow-tooltip value-GgmpMpKr'}).getText())
+    print('Beta (1Y):-' , key_stat_list[7].find('div', {'class': 'apply-overflow-tooltip value-GgmpMpKr'}).getText())
 
 
 
 if __name__ == '__main__':
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless= True)
         page = browser.new_page()
         page.goto(url)
         page.wait_for_load_state('networkidle')
